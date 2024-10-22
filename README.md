@@ -14,7 +14,7 @@
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ciiiii/cloudflare-docker-proxy)
 
-## Routes configuration tutorial
+## Routes configuration tutorial 
 
 1. use cloudflare worker host: only support proxy one registry
    ```javascript
