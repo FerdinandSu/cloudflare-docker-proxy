@@ -34,6 +34,9 @@ function routeByHosts(host) {
 
 async function handleRequest(request) {
   const url = new URL(request.url);
+  if (url.pathname == "/") {
+    return Response.redirect(url.protocol + "//" + url.host + "/v2/", 301);
+  }
   const upstream = routeByHosts(url.hostname);
   if (upstream === "") {
     return new Response(
@@ -107,11 +110,21 @@ async function handleRequest(request) {
   const newReq = new Request(newUrl, {
     method: request.method,
     headers: request.headers,
-    redirect: "follow",
+    // don't follow redirect to dockerhub blob upstream
+    redirect: isDockerHub ? "manual" : "follow",
   });
   const resp = await fetch(newReq);
   if (resp.status == 401) {
     return responseUnauthorized(url);
+  }
+  // handle dockerhub blob redirect manually
+  if (isDockerHub && resp.status == 307) {
+    const location = new URL(resp.headers.get("Location"));
+    const redirectResp = await fetch(location.toString(), {
+      method: "GET",
+      redirect: "follow",
+    });
+    return redirectResp;
   }
   return resp;
 }
@@ -146,7 +159,7 @@ async function fetchToken(wwwAuthenticate, scope, authorization) {
 }
 
 function responseUnauthorized(url) {
-  const headers = new(Headers);
+  const headers = new Headers();
   if (MODE == "debug") {
     headers.set(
       "Www-Authenticate",
