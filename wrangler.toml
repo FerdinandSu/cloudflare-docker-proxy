@@ -12,12 +12,12 @@ CUSTOM_DOMAIN = "fers.top"
 [env.dev.vars]
 MODE = "debug"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
-CUSTOM_DOMAIN = "exmaple.com"
+CUSTOM_DOMAIN = "mirrors.fers.top"
 
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
-  { pattern = "docker.fers.top", custom_domain = true },
+  { pattern = "docker.mirrors.fers.top", custom_domain = true },
   { pattern = "quay.mirrors.fers.top", custom_domain = true },
   { pattern = "gcr.mirrors.fers.top", custom_domain = true },
   { pattern = "k8s-gcr.mirrors.fers.top", custom_domain = true },
