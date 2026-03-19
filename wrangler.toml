@@ -7,7 +7,7 @@ port = 8787
 local_protocol = "http"
 
 [env.vars]
-CUSTOM_DOMAIN = "fers.top"
+CUSTOM_DOMAIN = "m.fers.top"
 
 [env.dev.vars]
 MODE = "debug"
@@ -17,13 +17,13 @@ CUSTOM_DOMAIN = "exmaple.com"
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
-  { pattern = "docker.fers.top", custom_domain = true },
-  { pattern = "quay.fers.top", custom_domain = true },
-  { pattern = "gcr.fers.top", custom_domain = true },
-  { pattern = "k8s-gcr.fers.top", custom_domain = true },
-  { pattern = "k8s.fers.top", custom_domain = true },
-  { pattern = "ghcr.fers.top", custom_domain = true },
-  { pattern = "cloudsmith.fers.top", custom_domain = true },
+  { pattern = "docker.m.fers.top", custom_domain = true },
+  { pattern = "quay.m.fers.top", custom_domain = true },
+  { pattern = "gcr.m.fers.top", custom_domain = true },
+  { pattern = "k8s-gcr.m.fers.top", custom_domain = true },
+  { pattern = "k8s.m.fers.top", custom_domain = true },
+  { pattern = "ghcr.m.fers.top", custom_domain = true },
+  { pattern = "cloudsmith.m.fers.top", custom_domain = true },
 ]
 
 [env.production.vars]
@@ -32,7 +32,7 @@ TARGET_UPSTREAM = ""
 
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
-# route = { pattern = "docker-staging.fers.top", custom_domain = true }
+# route = { pattern = "docker-staging.m.fers.top", custom_domain = true }
 
 [env.staging.vars]
 MODE = "staging"
